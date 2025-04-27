@@ -1,0 +1,36 @@
+React Query simplifies data fetching, caching, synchronization, and state management in React applications. It handles API calls efficiently, reducing redundant requests and improving performance.
+
+🔹 Advantages of React Query
+✅ Automatic Data Caching
+
+Stores API responses in cache to avoid unnecessary requests.
+Reduces API load and improves performance.
+✅ Automatic Background Fetching & Syncing
+
+Keeps data fresh by refetching in the background when needed.
+Automatically updates UI when data changes.
+✅ Simplifies API Calls
+
+No need to manage useState or useEffect for fetching data.
+Handles loading, error, and success states automatically.
+✅ Optimistic Updates
+
+Updates UI instantly before the server response (useful for fast user feedback).
+If the request fails, it rolls back the UI to the previous state.
+✅ Pagination & Infinite Scrolling
+
+Built-in support for paginated data fetching.
+Efficiently handles large datasets with infinite scrolling.
+✅ Automatic Refetching
+
+Refetches data when network reconnects or tab becomes active again.
+Ensures users always see up-to-date information.
+✅ Server State Management
+
+React Query manages server state, unlike Redux which is designed for client state.
+No need for manual Redux setup for API state management.
+🚀 When Should You Use React Query?
+🔹 When your app relies heavily on API calls.
+🔹 When you need real-time data updates.
+🔹 When performance optimization is important.
+🔹 When you want to reduce boilerplate code for fetching & caching data.
