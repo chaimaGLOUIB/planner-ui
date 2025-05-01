@@ -15,17 +15,17 @@ import { Field } from '@/components/ui/fields/Fields'
 
 import { IAuthForm } from '@/types/auth.types'
 
-import { DASHBOARD_PAGES } from '@/config/pages-url.config'
 
+import { DASHBOARD_PAGES } from '@/config/pages-url.config'
 
 import { authService } from '@/services/auth.service'
 
 const FullScreenLoader = () => (
-	<div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
-	  <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+	<div className='fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center'>
+		<div className='w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin'></div>
 	</div>
-  );
-  
+)
+
 export function Auth() {
 	const [isLoginForm, setIsLoginForm] = useState(false)
 
@@ -47,11 +47,16 @@ export function Auth() {
 		},
 
 		onError(error) {
-			toast(error.message, {
+			const errorMessage =
+				error instanceof TypeError
+					? 'Network error. Please try again.'
+					: error.message
+
+			toast(errorMessage, {
 				style: {
 					backgroundColor: 'red'
 				},
-				duration: 5000 // Duration in milliseconds (5000ms = 5 seconds)
+				duration: 5000
 			})
 		}
 	})
@@ -77,41 +82,40 @@ export function Auth() {
 	})
 
 	return (
-		<div className="flex min-h-screen relative">
-  {isPending && <FullScreenLoader />}
+		<div className='flex min-h-screen relative'>
+			{isPending && <FullScreenLoader />}
 
-  <form
-    className="w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout"
-    onSubmit={handleSubmit(onSubmit)}
-  >
-    <Heading title="Auth" />
+			<form
+				className='w-1/4 m-auto shadow bg-sidebar rounded-xl p-layout'
+				onSubmit={handleSubmit(onSubmit)}
+			>
+				<Heading title='Auth' />
 
-    <Field
-      id="email"
-      label="Email"
-      placeholder="Enter email:"
-      type="email"
-      extra="mb-4"
-      {...register('email')}
-      error={errors.email}
-    />
+				<Field
+					id='email'
+					label='Email'
+					placeholder='Enter email:'
+					type='email'
+					extra='mb-4'
+					{...register('email')}
+					error={errors.email}
+				/>
 
-    <Field
-      id="password"
-      label="Password"
-      placeholder="Enter password:"
-      type="password"
-      extra="mb-6"
-      {...register('password')}
-      error={errors.password}
-    />
+				<Field
+					id='password'
+					label='Password'
+					placeholder='Enter password:'
+					type='password'
+					extra='mb-6'
+					{...register('password')}
+					error={errors.password}
+				/>
 
-    <div className="flex items-center gap-5 justify-center">
-      <Button onClick={() => setIsLoginForm(true)}>Login</Button>
-      <Button onClick={() => setIsLoginForm(false)}>Register</Button>
-    </div>
-  </form>
-</div>
-
+				<div className='flex items-center gap-5 justify-center'>
+					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
+					<Button onClick={() => setIsLoginForm(false)}>Register</Button>
+				</div>
+			</form>
+		</div>
 	)
 }
