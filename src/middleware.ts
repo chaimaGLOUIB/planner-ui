@@ -9,7 +9,7 @@ import { EnumTokens } from './services/auth-token.service'
 export async function middleware(request: NextRequest) {
 	const { url, cookies } = request
 
-	const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+	const refreshToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value
 
 	const isAuthPage = url.includes('/auth')
 
