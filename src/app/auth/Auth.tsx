@@ -100,6 +100,7 @@ export function Auth() {
 					{...register('email')}
 					error={errors.email}
 				/>
+				<p className='text-white'>chaimaaglouib@gmail.com</p>{' '}
 
 				<Field
 					id='password'
@@ -110,6 +111,8 @@ export function Auth() {
 					{...register('password')}
 					error={errors.password}
 				/>
+				<p className='text-white'>12345678</p>{' '}
+
 
 				<div className='flex items-center gap-5 justify-center'>
 					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
