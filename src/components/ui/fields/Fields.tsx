@@ -89,6 +89,7 @@ interface InputFieldProps {
 	type?: string
 	isNumber?: boolean
 	error: FieldError | undefined
+	info?: string
 }
 // interface User1 {
 //     name: string;
@@ -115,6 +116,7 @@ export const Field = forwardRef<HTMLInputElement, InputFieldProps>(
 			disabled,
 			isNumber,
 			error,
+			info,
 			...rest
 		},
 		ref
@@ -177,6 +179,8 @@ export const Field = forwardRef<HTMLInputElement, InputFieldProps>(
 					{...rest}
 				/>
 				<p className='text-red-500'>{error?.message}</p>{' '}
+				<p className='text-white/70'>{info? info}</p>{' '}
+
 				{/* Displaying error */}
 			</div>
 		)
