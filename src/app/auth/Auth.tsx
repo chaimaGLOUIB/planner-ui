@@ -90,7 +90,7 @@ export function Auth() {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<Heading title='Auth' />
-
+<div>
 				<Field
 					id='email'
 					label='Email'
@@ -100,8 +100,9 @@ export function Auth() {
 					{...register('email')}
 					error={errors.email}
 				/>
-				<p className='text-white'>chaimaaglouib@gmail.com</p>{' '}
-
+				<p className='text-white text-xs'>chaimaaglouib@gmail.com</p>{' '}
+</div>
+<div>
 				<Field
 					id='password'
 					label='Password'
@@ -111,9 +112,9 @@ export function Auth() {
 					{...register('password')}
 					error={errors.password}
 				/>
-				<p className='text-white'>12345678</p>{' '}
+				<p className='text-white text-xs'>12345678</p>{' '}
 
-
+</div>
 				<div className='flex items-center gap-5 justify-center'>
 					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
 					<Button onClick={() => setIsLoginForm(false)}>Register</Button>
