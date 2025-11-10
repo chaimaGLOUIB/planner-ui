@@ -90,7 +90,8 @@ export function Auth() {
 				onSubmit={handleSubmit(onSubmit)}
 			>
 				<Heading title='Auth' />
-<div>
+<div className="space-y-0">
+
 				<Field
 					id='email'
 					label='Email'
@@ -102,7 +103,7 @@ export function Auth() {
 				/>
 				<p className='text-white text-xs'>chaimaaglouib@gmail.com</p>{' '}
 </div>
-<div>
+<div className="space-y-0">
 				<Field
 					id='password'
 					label='Password'
