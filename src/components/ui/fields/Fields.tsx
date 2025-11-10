@@ -179,7 +179,7 @@ export const Field = forwardRef<HTMLInputElement, InputFieldProps>(
 					{...rest}
 				/>
 				<p className='text-red-500'>{error?.message}</p>{' '}
-{info && <p className="text-white/70">{info}</p>}
+{info && <p className="text-white/50 text-sm">{info}</p>}
 
 				{/* Displaying error */}
 			</div>
