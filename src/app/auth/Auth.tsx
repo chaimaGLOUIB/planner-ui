@@ -58,6 +58,7 @@ export function Auth() {
 				},
 				duration: 5000
 			})
+			//adding another toast
 			if(error instanceof TypeError)
 			{
 				setTimeout(() => {
