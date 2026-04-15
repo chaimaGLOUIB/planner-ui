@@ -65,7 +65,7 @@ export function Auth() {
 
 			toast(errorMessage, {
 				style: {
-					backgroundColor: 'red'
+					backgroundColor: isServerNotReady ? '#ef4444' : '#facc15'
 				},
 				duration: 5000
 			})
@@ -78,7 +78,7 @@ export function Auth() {
 						},
 						duration: 5000
 					})
-				}, 120000)
+				}, 60000)
 			}
 		}
 	})
