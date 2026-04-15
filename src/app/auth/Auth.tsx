@@ -49,7 +49,7 @@ export function Auth() {
 		onError(error) {
 			const errorMessage =
 				error instanceof TypeError
-					? 'Waking up the server… this may take up to 2 minutes.'
+					? 'Network error. Please try again.'
 					: error.message
 
 			toast(errorMessage, {
@@ -58,10 +58,7 @@ export function Auth() {
 				},
 				duration: 5000
 			})
-			//adding another toast
-			
-  		}
-		
+		}
 	})
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
 		mutate(data)
