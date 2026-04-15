@@ -59,17 +59,7 @@ export function Auth() {
 				duration: 5000
 			})
 			//adding another toast
-			if(error instanceof TypeError)
-			{
-				setTimeout(() => {
-					toast('Server is ready. Please try logging in again.', {
-						style: {
-						backgroundColor: 'red',
-						},
-						duration: 5000,
-					});
-				}, 120000 ); // 2 minutes
-			}
+			
   		}
 		
 	})
