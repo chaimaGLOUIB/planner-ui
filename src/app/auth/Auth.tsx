@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -46,11 +47,21 @@ export function Auth() {
 			push(DASHBOARD_PAGES.HOME)
 		},
 
-		onError(error) {
-			const errorMessage =
-				error instanceof TypeError
-					? 'Waking up the server… this may take up to 2 minutes.'
-					: error.message
+		onError(error: unknown) {
+			const isAxiosError = axios.isAxiosError(error)
+
+			const isNetworkError = isAxiosError && !error.response
+
+			const isServerError =
+				isAxiosError && error.response && error.response.status >= 500
+
+			const isServerNotReady = isNetworkError || isServerError
+
+			const errorMessage = isServerNotReady
+				? 'Waking up the server… this may take up to one minute.'
+				: isAxiosError
+					? error.message
+					: 'Something went wrong'
 
 			toast(errorMessage, {
 				style: {
@@ -58,20 +69,18 @@ export function Auth() {
 				},
 				duration: 5000
 			})
-			//adding another toast
-			if(error instanceof TypeError)
-			{
+
+			if (isServerNotReady) {
 				setTimeout(() => {
 					toast('Server is ready. Please try logging in again.', {
 						style: {
-						backgroundColor: 'red',
+							backgroundColor: 'red'
 						},
-						duration: 5000,
-					});
-				}, 120000 ); // 2 minutes
+						duration: 5000
+					})
+				}, 120000)
 			}
-  		}
-		
+		}
 	})
 	const onSubmit: SubmitHandler<IAuthForm> = data => {
 		mutate(data)
@@ -104,7 +113,6 @@ export function Auth() {
 			>
 				<Heading title='Auth' />
 
-
 				<Field
 					id='email'
 					label='Email'
@@ -126,7 +134,6 @@ export function Auth() {
 					error={errors.password}
 					info='12345678'
 				/>
-
 
 				<div className='flex items-center gap-5 justify-center'>
 					<Button onClick={() => setIsLoginForm(true)}>Login</Button>
